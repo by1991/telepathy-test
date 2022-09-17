@@ -2,7 +2,7 @@
 
 Console.WriteLine("Hello, World!");
 
-AVL tree = new AVL();
+var tree = new AVL();
 tree.AddData(5);
 tree.AddData(3);
 tree.AddData(6);
@@ -14,3 +14,4 @@ tree.AddData(9);
 tree.Print();
 tree.SearchData(2);
 tree.SearchData(7);
+tree.SearchData(11);

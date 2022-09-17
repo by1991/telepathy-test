@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+
 namespace TL.Question2
 {
     /// <summary>
@@ -8,55 +10,85 @@ namespace TL.Question2
     public class AVL
     {
         Node Root;
+        List<int> Output; // for printing
 
         public AVL()
         {
+            
         }
 
         /// <summary>
         /// Method <c>AddData</c> adds a node to the AVL tree.
         /// </summary>
         /// <param name="data">the new data to be added</param>
-        public void AddData(int data)
+        /// <returns>new root node</returns>
+        public Node AddData(int data)
         {
             Root = Root == null ? new Node(data) : Insert(Root, new Node(data));
+            return Root;
         }
 
         /// <summary>
         /// Method <c>SearchData</c> looks up the node inside the AVL tree.
         /// </summary>
-        /// <param name="key">the new data to be added</param>
-        public void SearchData(int key)
+        /// <param name="key">the data to search</param>
+        /// <returns>the node of key if found or null if key not found</returns>
+        public Node? SearchData(int key)
         {
-            if (LookUp(key, Root).Data == key)
+            var node = LookUp(key, Root);
+            if (node == null)
+            {
+                Console.WriteLine("{0} was not found!", key);
+            }
+            else if (node.Data == key)
             {
                 Console.WriteLine("{0} was found!", key);
             }
             else
             {
-                Console.WriteLine("Not found!");
+                Console.WriteLine("{0} was not found!", key);
             }
+
+            return node;
         }
 
         /// <summary>
         /// Method <c>Print</c> prints all nodes using in order traversal
         /// </summary>
-        public void Print()
+        /// <returns>an array of nodes data in ascending order</returns>
+        public int[]? Print()
         {
+            Output = new List<int>();
+
             if (Root == null)
             {
                 Console.WriteLine("Empty");
-                return;
+                return null;
             }
 
             InOrderTraversal(Root);
-            Console.WriteLine();
+
+            Console.WriteLine("------ All numbers in ascending order: ------");
+            Console.WriteLine(String.Join(", ", Output.ToArray()));
+            Console.WriteLine("---------------------------------------------");
+
+            return Output.ToArray();
         }
 
-        private Node LookUp(int key, Node currentNode)
+        /// <summary>
+        /// Method <c>LookUp</c> looks up the node from current node.
+        /// </summary>
+        /// <param name="key">the data to look up</param>
+        /// <param name="currentNode">the current node</param>
+        /// <returns>the node of key if found or null if key not found</returns>
+        private Node? LookUp(int key, Node currentNode)
         {
 
-            if (key < currentNode.Data)
+            if (currentNode == null)
+            {
+                return null;
+            }
+            else if (key <= currentNode.Data)
             {
                 if (key == currentNode.Data)
                 {
@@ -85,13 +117,13 @@ namespace TL.Question2
             if (currentNode != null)
             {
                 InOrderTraversal(currentNode.Left);
-                Console.Write("{0} ", currentNode.Data);
+                Output.Add(currentNode.Data);
                 InOrderTraversal(currentNode.Right);
             }
         }
 
         /// <summary>
-        /// Method <c>Insert</c> inserts a new node to current AVL tree recursively.
+        /// Method <c>Insert</c> inserts a new node to current AVL tree recursively and performs rebalancing.
         /// </summary>
         /// <param name="newNode">the new node to be added</param>
         /// <param name="currentNode">the current node</param>

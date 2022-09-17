@@ -4,4 +4,4 @@
 
 ## Question 2
 ### References:
-..* https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+- https://www.geeksforgeeks.org/avl-tree-set-1-insertion/

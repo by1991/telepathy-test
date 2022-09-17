@@ -2,5 +2,9 @@
 .vs/*
 TL.Question1/bin/*
 TL.Question1/obj/*
+TL.Question1.Tests/bin/
+TL.Question1.Tests/obj/
 TL.Question2/bin/*
 TL.Question2/obj/*
+TL.Question2.Tests/bin/
+TL.Question2.Tests/obj/
