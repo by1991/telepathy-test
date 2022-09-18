@@ -1,6 +1,4 @@
-﻿using System.Runtime.Intrinsics.X86;
-
-namespace TL.Question2.Tests;
+﻿namespace TL.Question2.Tests;
 
 public class TestSearchData
 {

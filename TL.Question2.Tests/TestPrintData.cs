@@ -1,5 +1,4 @@
-﻿using System.Runtime.Intrinsics.X86;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace TL.Question2.Tests;
 
