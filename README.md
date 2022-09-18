@@ -1,5 +1,8 @@
 # TL Technical Assessment
 
+## Prerequisites
+- .Net 6 SDK or later
+
 ## Question 1
 
 ## Question 2
