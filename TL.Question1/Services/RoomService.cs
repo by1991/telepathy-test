@@ -9,10 +9,10 @@ namespace TL.Question1.Services
     /// <summary>
     /// Class <c>RoomService</c> defines functions for hotel room operations.
     /// </summary>
-    public class RoomService : IRoomServics
+    public class RoomService : IRoomService
     {
-        private IDictionary<string, Room> Rooms;
-        private string[] AvailableRoomIds = Array.Empty<string>();
+        private readonly IDictionary<string, Room> Rooms;
+        private List<string> AvailableRoomIds = new List<string>();
 
         public RoomService(IDictionary<string, Room> rooms)
         {
@@ -32,6 +32,10 @@ namespace TL.Question1.Services
             return Rooms;
         }
 
+        /// <summary>
+        /// Method <c>CheckIn</c> checks in a guest.
+        /// </summary>
+        /// <returns>suceeded: true, failed: false</returns>
         public bool CheckIn()
         {
             if (AvailableRoomIds.Any())
@@ -48,7 +52,7 @@ namespace TL.Question1.Services
 
                     Console.WriteLine("Checked in room: {0}", roomId);
 
-                    UpdateAvailableRoomIds(Rooms);
+                    AvailableRoomIds.RemoveAt(0);
 
                     return true;
                 }
@@ -65,6 +69,11 @@ namespace TL.Question1.Services
             }
         }
 
+        /// <summary>
+        /// Method <c>CheckOut</c> checks out a room.
+        /// </summary>
+        /// <param name="roomId">id of the room to be checked out</param>
+        /// <returns>suceeded: true, failed: false</returns>
         public bool CheckOut(string roomId)
         {
             if (Rooms.ContainsKey(roomId))
@@ -92,6 +101,11 @@ namespace TL.Question1.Services
             }
         }
 
+        /// <summary>
+        /// Method <c>CheckOut</c> cleans a room.
+        /// </summary>
+        /// <param name="roomId">id of the room to be cleaned</param>
+        /// <returns>suceeded: true, failed: false</returns>
         public bool CleanRoom(string roomId)
         {
             if (Rooms.ContainsKey(roomId))
@@ -122,6 +136,11 @@ namespace TL.Question1.Services
             }
         }
 
+        /// <summary>
+        /// Method <c>MarkRepair</c> marks room to be repaired.
+        /// </summary>
+        /// <param name="roomId">id of the room to be marked</param>
+        /// <returns>suceeded: true, failed: false</returns>
         public bool MarkRepair(string roomId)
         {
             if (Rooms.ContainsKey(roomId))
@@ -148,6 +167,11 @@ namespace TL.Question1.Services
             }
         }
 
+        /// <summary>
+        /// Method <c>RepairRoom</c> repairs a room.
+        /// </summary>
+        /// <param name="roomId">id of the room to be repaired</param>
+        /// <returns>suceeded: true, failed: false</returns>
         public bool RepairRoom(string roomId)
         {
             if (Rooms.ContainsKey(roomId))
@@ -174,15 +198,25 @@ namespace TL.Question1.Services
             }
         }
 
+        /// <summary>
+        /// Method <c>UpdateAvailableRoomIds</c> get all room ids under Available status and assign to AvailableRoomIds.
+        /// </summary>
+        /// <param name="rooms">rooms dictionary which key is the room id and value is the room object</param>
         private void UpdateAvailableRoomIds(IDictionary<string, Room> rooms)
         {
             var availableRooms = rooms.Where(r => r.Value.Status == RoomStatus.Available);
             if (availableRooms.Any())
             {
-                AvailableRoomIds = availableRooms.ToDictionary(r => r.Key, r => r.Value).Keys.ToArray();
+                AvailableRoomIds = availableRooms.ToDictionary(r => r.Key, r => r.Value).Keys.ToList();
             }
         }
 
+        /// <summary>
+        /// Method <c>IsStatusValid</c> checks whether the next stattus is valid or not.
+        /// </summary>
+        /// <param name="currentStatus">current status of the room</param>
+        /// <param name="nextStatus">next status of the room</param>
+        /// <returns>status valid: true, status invalid: false</returns>
         private bool IsStatusValid(RoomStatus currentStatus, RoomStatus nextStatus)
         {
             switch (currentStatus)

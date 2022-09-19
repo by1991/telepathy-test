@@ -13,7 +13,7 @@ public class TestSearchData
         tree.AddData(2);
 
         var node = tree.SearchData(11);
-        Assert.Equal(node, null);
+        Assert.Null(node);
     }
 
     [Fact]
@@ -27,8 +27,11 @@ public class TestSearchData
         tree.AddData(2);
 
         var node = tree.SearchData(6);
-        Assert.Equal(node.Data, 6);
-        Assert.Equal(node.Left, null);
-        Assert.Equal(node.Right.Data, 7);
+        if (node != null)
+        {
+            Assert.Equal(6, node.Data);
+            Assert.Null(node.Left);
+            Assert.Equal(7, node.Right.Data);
+        }
     }
 }

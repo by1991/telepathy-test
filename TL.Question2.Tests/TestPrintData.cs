@@ -16,9 +16,9 @@ public class TestPrintData
 
         var nodes = tree.Print();
 
-        var result = new int[5] { 2, 3, 5, 6, 7 };
+        var expected = new int[5] { 2, 3, 5, 6, 7 };
 
-        Assert.Equal(nodes, result);
+        Assert.Equal(expected, nodes);
     }
 
     [Fact]
@@ -28,6 +28,6 @@ public class TestPrintData
 
         var nodes = tree.Print();
 
-        Assert.Equal(nodes, null);
+        Assert.Null(nodes);
     }
 }

@@ -17,7 +17,7 @@ foreach (string id in roomIds)
     rooms.Add(new KeyValuePair<string, Room>(id, new Room(id)));
 }
 
-IRoomServics roomService = new RoomService(rooms);
+IRoomService roomService = new RoomService(rooms);
 
 roomService.CheckIn();
 roomService.CheckOut("2A");

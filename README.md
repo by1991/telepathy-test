@@ -4,6 +4,8 @@
 - .Net 6 SDK or later
 
 ## Question 1
+### Run Unit Tests
+`dotnet test`
 
 ## Question 2
 ### References:
