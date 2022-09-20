@@ -9,12 +9,12 @@ namespace TL.Question2
     /// </summary>
     public class AVL
     {
-        Node Root;
+        Node? Root;
         List<int> Output; // for printing
 
         public AVL()
         {
-            
+            Root = null;
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace TL.Question2
         /// <param name="key">the data to look up</param>
         /// <param name="currentNode">the current node</param>
         /// <returns>the node of key if found or null if key not found</returns>
-        private Node? LookUp(int key, Node currentNode)
+        private Node? LookUp(int key, Node? currentNode)
         {
 
             if (currentNode == null)
@@ -112,7 +112,7 @@ namespace TL.Question2
         /// Method <c>InOrderTraversal</c> performs in order traversal.
         /// </summary>
         /// <param name="currentNode">the current node</param>
-        private void InOrderTraversal(Node currentNode)
+        private void InOrderTraversal(Node? currentNode)
         {
             if (currentNode != null)
             {
@@ -128,7 +128,7 @@ namespace TL.Question2
         /// <param name="newNode">the new node to be added</param>
         /// <param name="currentNode">the current node</param>
         /// <returns>new node</returns>
-        private Node Insert(Node currentNode, Node newNode)
+        private Node Insert(Node? currentNode, Node newNode)
         {
             if (currentNode == null)
             {
@@ -191,11 +191,14 @@ namespace TL.Question2
         /// </summary>
         /// <param name="currentNode">the current node</param>
         /// <returns>An integer for balance factor</returns>
-        private int GetBalanceFactor(Node currentNode)
+        private int GetBalanceFactor(Node? currentNode)
         {
+            if (currentNode == null) return 0;
+
             int leftHeight = GetHeight(currentNode.Left);
             int rightHeight = GetHeight(currentNode.Right);
             int balanceFactor = leftHeight - rightHeight;
+
             return balanceFactor;
         }
 
@@ -204,7 +207,7 @@ namespace TL.Question2
         /// </summary>
         /// <param name="currentNode">the current node</param>
         /// <returns>An integer for the height</returns>
-        private int GetHeight(Node currentNode)
+        private int GetHeight(Node? currentNode)
         {
             int height = 0;
             if (currentNode != null)
