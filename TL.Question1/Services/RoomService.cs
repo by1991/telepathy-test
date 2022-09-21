@@ -11,13 +11,22 @@ namespace TL.Question1.Services
     /// </summary>
     public class RoomService : IRoomService
     {
-        private readonly IDictionary<string, Room> Rooms;
+        private readonly IDictionary<string, Room> Rooms = new Dictionary<string, Room>();
         private List<string> AvailableRoomIds = new List<string>();
+        string[] roomIds = {
+            "1A", "1B", "1C", "1D", "1E",
+            "2E", "2D", "2C", "2B", "2A",
+            "3A", "3B", "3C", "3D", "3E",
+            "4E", "4D", "4C", "4B", "4A"
+        };
 
-        public RoomService(IDictionary<string, Room> rooms)
+        public RoomService()
         {
-            Rooms = rooms;
-            UpdateAvailableRoomIds(rooms);
+            foreach (string id in roomIds)
+            {
+                Rooms.Add(new KeyValuePair<string, Room>(id, new Room(id)));
+            }
+            UpdateAvailableRoomIds(Rooms);
         }
 
         /// <summary>
