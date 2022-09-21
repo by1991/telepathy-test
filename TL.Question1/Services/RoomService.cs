@@ -20,6 +20,9 @@ namespace TL.Question1.Services
             UpdateAvailableRoomIds(rooms);
         }
 
+        /// <summary>
+        /// Method <c>Print</c> prints all rooms and status.
+        /// </summary>
         public IDictionary<string, Room> Print()
         {
             Console.WriteLine("------ All rooms status: ------");
@@ -30,6 +33,28 @@ namespace TL.Question1.Services
             Console.WriteLine("-------------------------------");
 
             return Rooms;
+        }
+
+        /// <summary>
+        /// Method <c>ListAvailableRooms</c> prints all available rooms.
+        /// </summary>
+        public List<string> ListAvailableRooms()
+        {
+            if (AvailableRoomIds.Any())
+            {
+                Console.WriteLine("------ All available rooms: ------");
+                foreach (var id in AvailableRoomIds)
+                {
+                    Console.WriteLine("Room Number: {0}", id);
+                }
+                Console.WriteLine("-------------------------------");
+            }
+            else
+            {
+                Console.WriteLine("No available rooms!");
+            }
+
+            return AvailableRoomIds;
         }
 
         /// <summary>
@@ -116,7 +141,7 @@ namespace TL.Question1.Services
                 if (IsStatusValid(room.Status, newStatus))
                 {
                     room.Status = newStatus;
-                    
+
                     Console.WriteLine("Cleaned room: {0}", roomId);
 
                     UpdateAvailableRoomIds(Rooms);

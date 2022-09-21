@@ -33,6 +33,7 @@ void ShowMenu()
     Console.WriteLine("-- Clean Room, Please Type 3");
     Console.WriteLine("-- Mark Repair, Please Type 4");
     Console.WriteLine("-- Repair Room, Please Type 5");
+    Console.WriteLine("-- List Available Rooms, Please Type 6");
 
     var action = Console.ReadLine();
 
@@ -268,6 +269,29 @@ void ShowMenu()
                     ShowMenu();
                 }
             }
+            break;
+        case "6":
+            roomService.ListAvailableRooms();
+            Console.WriteLine("-- Type 1 To Continue");
+            Console.WriteLine("-- Type 2 To Exit");
+
+            var step6 = Console.ReadLine();
+
+            if (step6 != null && step6.Replace(" ", "") == "1")
+            {
+                Console.WriteLine("Please Select An Action Below:");
+                ShowMenu();
+            }
+            else if (step6 != null && step6.Replace(" ", "") == "2")
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Please Type A Valid Action:");
+                ShowMenu();
+            }
+
             break;
         default:
             Console.WriteLine("Please Type A Valid Action:");

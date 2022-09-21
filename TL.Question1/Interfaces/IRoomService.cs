@@ -6,6 +6,7 @@ namespace TL.Question1.Interfaces
     public interface IRoomService
     {
         public IDictionary<string, Room> Print();
+        List<string> ListAvailableRooms();
         public bool CheckIn();
         public bool CheckOut(string roomId);
         public bool CleanRoom(string roomId);
