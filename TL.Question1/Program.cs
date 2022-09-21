@@ -8,6 +8,7 @@ IRoomService roomService = new RoomService();
 Console.WriteLine("-----------------------------");
 Console.WriteLine("---------- Welcome ----------");
 Console.WriteLine("-----------------------------");
+roomService.Print();
 Console.WriteLine();
 Console.WriteLine("Please Select An Action Below:");
 ShowMenu();
