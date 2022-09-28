@@ -1,4 +1,4 @@
-# TL Technical Assessment
+# Telepathy Labs Technical Assessment
 
 ## Prerequisites
 - Install .Net 6 SDK or later
